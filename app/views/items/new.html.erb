@@ -1,0 +1,4 @@
+<%= turbo_frame_tag dom_id(Item.new) do %>
+  <div class="h3">Create Item</div>
+  <%= render "form", item: @item %>
+<% end %>

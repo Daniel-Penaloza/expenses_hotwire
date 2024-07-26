@@ -1,0 +1,18 @@
+<%= form_with model: @item, class: 'row g-3' do |form| %>
+  <div class="col-auto">
+    <%= form.label :name, class: "visually-hidden" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Item Name" %>
+  </div>
+  <div class="col-auto">
+    <%= form.label :amount, class: "visually-hidden" %>
+    <%= form.number_field :amount, class: "form-control", placeholder: "Amount" %>
+  </div>
+
+  <div class="col-auto">
+    <%= form.select :item_type, options_for_select(Item.item_types.keys.map { |key| [key.humanize, key] }, @item.item_type), {}, { class: "form-select" } %>
+  </div>
+
+  <div class="col-auto">
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  </div>
+<% end %>
