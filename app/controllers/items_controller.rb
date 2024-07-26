@@ -1,16 +1,17 @@
 class ItemsController < ApplicationController
   before_action :set_quote, only: %i[show destroy]
+  before_action :set_monthly_item, only: %i[new create]
 
   def index
     @items = Item.desc_order
   end
 
   def new
-    @item = Item.new
+    @item = @montly_item.items.build
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = @montly_item.items.build(item_params)
 
     if @item.save
       respond_to do |format|
@@ -36,10 +37,14 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :amount, :item_type)
+    params.require(:item).permit(:name, :amount, :item_type, monthly_items_attributes: [:monthly_item_id])
   end
 
   def set_quote
     @item = Item.find(params[:id])
+  end
+
+  def set_monthly_item
+    @montly_item = MonthlyItem.find(params[:monthly_item_id])
   end
 end

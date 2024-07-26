@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "month_items", partial: "monthly_items/monthly_item", locals: { monthly_item: @monthly_item } %>
+
+<%= turbo_stream.update MonthlyItem.new, "" %>

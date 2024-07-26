@@ -1,0 +1,12 @@
+<%= link_to(monthly_item_path(monthly_item), class: "text-decoration-none", data: { "turbo_frame": "_top" }) do %>
+  <div class="monthly_items_list">
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center bg-light m-2">
+        <span class="fw-bold p-2 text-capitalize"><%= monthly_item.month %></span>
+        <span>Total De Ingresos</span>
+        <span>Total De Gastos</span>
+        <span>Acumulado</span>
+      </li>
+    </ul>
+  </div>
+<% end %>
