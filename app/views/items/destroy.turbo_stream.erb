@@ -1,0 +1,11 @@
+<% if @item.income? %>
+  <%= turbo_stream.update "total_incomes" do %>
+    <%= render partial: 'items/income_totals', locals: { items: Item.all } %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "total_outcomes" do %>
+    <%= render partial: 'items/outcome_totals', locals: { items: Item.all } %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.remove dom_id(@item) %>
