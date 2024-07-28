@@ -1,0 +1,10 @@
+<%= turbo_frame_tag dom_id(MonthlyItem.new) do %>
+  <%= link_to "Create new Month",
+              new_monthly_item_path,
+              class: 'btn btn-primary',
+              data: { "turbo_frame": dom_id(MonthlyItem.new) } %>
+<% end %>
+
+<%= turbo_frame_tag "month_items" do %>
+<%= render @monthly_items %>
+<% end %>

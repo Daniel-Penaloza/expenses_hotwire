@@ -1,0 +1,14 @@
+<%= form_with model: @monthly_item, class: 'row g-3' do |form| %>
+  <div class="col-auto">
+    <%= form.select :month,
+      options_for_select(
+        MonthlyItem.months.keys.map { |key| [key.humanize, key] },
+        @monthly_item.month
+      ),{},{ class: "form-select" }
+    %>
+  </div>
+
+  <div class="col-auto">
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  </div>
+<% end %>

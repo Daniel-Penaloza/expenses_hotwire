@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: "items#index"
+  root to: "monthly_items#index"
 
-  resources :items
+  resources :monthly_items do
+    resources :items
+  end
 end

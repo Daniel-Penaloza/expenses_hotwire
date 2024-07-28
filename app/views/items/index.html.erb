@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(Item.new) do %>
   <%= link_to "Create a new item",
-            new_item_path,
+            new_monthly_item_item_path([@monthly_item, Item.new]),
             class: 'btn btn-primary',
             data: { "turbo-frame": dom_id(Item.new) }
             %>
