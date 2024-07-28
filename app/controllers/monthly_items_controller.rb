@@ -27,7 +27,7 @@ class MonthlyItemsController < ApplicationController
   private
 
   def monthly_item_params
-    params.require(:monthly_item).permit(:month, items_attributes: [:item_id])
+    params.require(:monthly_item).permit(:id, :month, items_attributes: [:item_id])
   end
 end
 

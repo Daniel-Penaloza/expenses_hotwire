@@ -3,7 +3,9 @@
     <li class="list-group-item d-flex justify-content-between align-items-center bg-light m-2">
       <span class="fw-bold p-2 text-capitalize"><%= item.name %></span>
       <span><%= item.amount %></span>
-      <span><%= link_to "Remove", monthly_item_items_path([@montly_item, item]), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %></span>
+      <span><%= link_to "Remove", monthly_item_item_path(item.monthly_item, item),
+                                  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
+                                  class: "btn btn-danger" %></span>
     </li>
   </ul>
 <% end %>

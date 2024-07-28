@@ -1,17 +1,17 @@
 class ItemsController < ApplicationController
   before_action :set_quote, only: %i[show destroy]
-  before_action :set_monthly_item, only: %i[new create]
+  before_action :set_monthly_item, only: %i[new create destroy]
 
   def index
     @items = Item.desc_order
   end
 
   def new
-    @item = @montly_item.items.build
+    @item = @monthly_item.items.build
   end
 
   def create
-    @item = @montly_item.items.build(item_params)
+    @item = @monthly_item.items.build(item_params)
 
     if @item.save
       respond_to do |format|
@@ -45,6 +45,6 @@ class ItemsController < ApplicationController
   end
 
   def set_monthly_item
-    @montly_item = MonthlyItem.find(params[:monthly_item_id])
+    @monthly_item = MonthlyItem.find(params[:monthly_item_id])
   end
 end

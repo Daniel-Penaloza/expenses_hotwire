@@ -9,7 +9,7 @@
 <% end %>
 
 <%= turbo_stream.update "msc" do %>
-  <%= render partial: 'items/monthly_saving_capaticy', locals: { item: Item }%>
+  <%= render partial: 'items/monthly_saving_capaticy', locals: { item: Item.msc_by_month(@monthly_item) }%>
 <% end %>
 
 <%= turbo_stream.remove dom_id(@item) %>
