@@ -15,4 +15,13 @@ class MonthlyItem < ApplicationRecord
     november: 'november',
     december: 'december'
   }
+
+
+  def msc_by_month
+    items.total_incomes - items.total_outcomes
+  end
+
+  def self.accumulated
+    MonthlyItem.all.inject(0) { |sum, element| sum + element.msc_by_month }
+  end
 end

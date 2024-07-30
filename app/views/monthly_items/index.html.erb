@@ -6,5 +6,15 @@
 <% end %>
 
 <%= turbo_frame_tag "month_items" do %>
-<%= render @monthly_items %>
+  <%= render @monthly_items %>
 <% end %>
+
+
+<div class="row">
+  <div class="col">
+    <span class="float-end badge bg-success fs-6">
+      <%= MonthlyItem.accumulated %>
+    </span>
+    <span class="float-end fw-bold mt-1">Accumulated: &MediumSpace;</span>
+  </div>
+</div>

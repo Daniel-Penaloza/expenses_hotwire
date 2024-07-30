@@ -1,10 +1,10 @@
-<%= turbo_frame_tag dom_id(Item.new) do %>
-  <%= link_to "Create a new item",
-            new_monthly_item_item_path([@monthly_item, Item.new]),
-            class: 'btn btn-primary',
-            data: { "turbo-frame": dom_id(Item.new) }
-            %>
-<% end %>
+<%= link_to "Create a new item",
+          new_monthly_item_item_path([@monthly_item, Item.new]),
+          class: 'btn btn-primary',
+          data: { "turbo-frame": dom_id(Item.new) }
+          %>
+
+<%= turbo_frame_tag Item.new %>
 
 <div class="row mt-2">
   <%= render "items/income_totals", items: @items %>
@@ -12,17 +12,19 @@
 </div>
 
 <div class="row mt-4">
-  <div class="col" style="border-right: 1px solid #333;">
-    <h4 class="mb-5 text-center">Incomes</h4>
-    <%= turbo_frame_tag "incomes" do %>
-      <%= render @items.income %>
-    <% end %>
-  </div>
-  <div class="col">
-    <h4 class="mb-5 text-center">Outcomes</h4>
-    <%= turbo_frame_tag "outcomes" do %>
-      <%= render @items.outcome %>
-    <% end %>
+  <div id="items">
+    <div class="col" style="border-right: 1px solid #333;">
+      <h4 class="mb-5 text-center">Incomes</h4>
+      <%= turbo_frame_tag "incomes" do %>
+        <%= render @items.income %>
+      <% end %>
+    </div>
+    <div class="col">
+      <h4 class="mb-5 text-center">Outcomes</h4>
+      <%= turbo_frame_tag "outcomes" do %>
+        <%= render @items.outcome %>
+      <% end %>
+    </div>
   </div>
 </div>
 

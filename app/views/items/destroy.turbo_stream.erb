@@ -8,8 +8,12 @@
   <% end %>
 <% end %>
 
+<% if @monthly_item.items.size == 0 %>
+  <%= turbo_stream.remove "items" %>
+<% end %>
+
 <%= turbo_stream.update "msc" do %>
-  <%= render partial: 'items/monthly_saving_capaticy', locals: { item: Item.msc_by_month(@monthly_item) }%>
+  <%= render partial: 'items/monthly_saving_capaticy', locals: { item: @monthly_item.msc_by_month }%>
 <% end %>
 
 <%= turbo_stream.remove dom_id(@item) %>

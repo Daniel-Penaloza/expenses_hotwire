@@ -6,7 +6,7 @@
         <!--TODO: refactor -->
         <span><%= Item.current_month(monthly_item).total_incomes %></span>
         <span><%= Item.current_month(monthly_item).total_outcomes %></span>
-        <span>Acumulado</span>
+        <span><%= monthly_item.msc_by_month %></span>
       </li>
     </ul>
   </div>

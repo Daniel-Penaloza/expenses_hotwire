@@ -25,10 +25,4 @@ class Item < ApplicationRecord
   def outcome?
     item_type == 'outcome'
   end
-
-
-  def self.msc_by_month(monthly_item)
-    current_month(monthly_item).total_incomes - current_month(monthly_item).total_outcomes
-    #where('monthly_item_id =?', monthly_item.id).total_incomes - where('monthly_item_id =?', monthly_item.id).total_outcomes
-  end
 end
