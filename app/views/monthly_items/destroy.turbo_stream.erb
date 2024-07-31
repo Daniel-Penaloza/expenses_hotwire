@@ -1,0 +1,5 @@
+<%= turbo_stream.remove @monthly_item %>
+
+<%= turbo_stream.update "accumulated" do %>
+  <%= render 'monthly_items/accumulated', accumulated: MonthlyItem.accumulated %>
+<% end %>

@@ -1,13 +1,13 @@
-<%= link_to(monthly_item_path(monthly_item), class: "text-decoration-none", data: { "turbo_frame": "_top" }) do %>
-  <div class="monthly_items_list">
-    <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center bg-white m-2">
-        <span class="fw-bold p-2 text-capitalize"><%= monthly_item.month %></span>
-        <!--TODO: refactor -->
-        <span><%= Item.current_month(monthly_item).total_incomes %></span>
-        <span><%= Item.current_month(monthly_item).total_outcomes %></span>
-        <span><%= monthly_item.msc_by_month %></span>
-      </li>
-    </ul>
-  </div>
+<%= turbo_frame_tag monthly_item do %>
+<div class="monthly_items_list">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center bg-white m-2">
+      <%= link_to monthly_item.month, monthly_item_path(monthly_item), class: "text-decoration-none fw-bold p-2 text-capitalize", data: { "turbo_frame": "_top" } %>
+      <span><%= monthly_item.month_incomes %></span>
+      <span><%= monthly_item.month_outcomes %></span>
+      <span><%= monthly_item.msc_by_month %></span>
+      <%= button_to "Delete", monthly_item_path(monthly_item), method: :delete, class: "btn btn-danger btn-sm" %>
+    </li>
+  </ul>
+</div>
 <% end %>

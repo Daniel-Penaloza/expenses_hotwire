@@ -1,4 +1,6 @@
 class MonthlyItemsController < ApplicationController
+  before_action :set_monthly_item, only: %i[show destroy]
+
   def index
     @monthly_items = MonthlyItem.all
   end
@@ -20,11 +22,22 @@ class MonthlyItemsController < ApplicationController
     end
   end
 
-  def show
-    @monthly_item = MonthlyItem.find(params[:id])
+  def show; end
+
+  def destroy
+    @monthly_item.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to quotes_path, notice: "Monthly Item was successfully destroyed." }
+      format.turbo_stream
+    end
   end
 
   private
+
+  def set_monthly_item
+    @monthly_item = MonthlyItem.find(params[:id])
+  end
 
   def monthly_item_params
     params.require(:monthly_item).permit(:id, :month, items_attributes: [:item_id])
