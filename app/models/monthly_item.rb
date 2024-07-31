@@ -1,5 +1,5 @@
 class MonthlyItem < ApplicationRecord
-  has_many :items
+  has_many :items, dependent: :destroy
 
   enum month: {
     january: 'january',
@@ -19,6 +19,18 @@ class MonthlyItem < ApplicationRecord
 
   def msc_by_month
     items.total_incomes - items.total_outcomes
+  end
+
+  def month_incomes
+    items.total_incomes
+  end
+
+  def month_outcomes
+    items.total_outcomes
+  end
+
+  def chart_by_month
+    { incomes: (month_incomes * 100) / MonthlyItem.accumulated , outcomes: ((month_outcomes * 100) / month_incomes).round(2).to_f } if items.any?
   end
 
   def self.accumulated
