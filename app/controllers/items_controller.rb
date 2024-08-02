@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_quote, only: %i[show destroy]
-  before_action :set_monthly_item, only: %i[new create destroy]
+  before_action :set_monthly_item, only: %i[new create destroy update]
 
   def index
     @items = Item.desc_order
@@ -25,11 +25,26 @@ class ItemsController < ApplicationController
 
   def show; end
 
+  def update
+    @item = @monthly_item.items.find(params[:id])
+
+    if @item.update(item_params)
+      respond_to do |format|
+        format.html { redirect_to monthly_item_path(@monthly_item), notice: 'Item was sucessfully update' }
+        format.turbo_stream
+        break
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
   def destroy
     @item.destroy!
 
     respond_to do |format|
-      format.html { redirect_to items_path, notice: "Quote was successfully destroyed." }
+      format.html { redirect_to items_path, notice: "Item was successfully destroyed." }
       format.turbo_stream
     end
   end
@@ -37,7 +52,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :amount, :item_type, monthly_items_attributes: [:monthly_item_id])
+    params.require(:item).permit(:name, :amount, :item_type, :applied, monthly_items_attributes: [:monthly_item_id])
   end
 
   def set_quote

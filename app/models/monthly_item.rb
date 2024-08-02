@@ -18,7 +18,7 @@ class MonthlyItem < ApplicationRecord
 
 
   def msc_by_month
-    items.total_incomes - items.total_outcomes
+    items.total_incomes_applied- items.total_outcomes_applied
   end
 
   def month_incomes

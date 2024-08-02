@@ -3,6 +3,12 @@
     <li class="list-group-item d-flex justify-content-between align-items-center bg-light m-2">
       <span class="fw-bold p-2 text-capitalize"><%= item.name %></span>
       <span><%= item.amount %></span>
+      <span><%= item.applied %></span>
+      <span>
+        <%= form_with model: [item.monthly_item, item] do |form| %>
+          <%= form.check_box :applied, data: { item_id: item.id, monthly_item_id: item.monthly_item.id, action: "items#submit_charge" } %>
+        <% end %>
+      </span>
       <span><%= link_to "Remove", monthly_item_item_path(item.monthly_item, item),
                                   data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
                                   class: "btn btn-danger" %></span>

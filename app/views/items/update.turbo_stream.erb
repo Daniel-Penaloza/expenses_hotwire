@@ -1,0 +1,3 @@
+<%= turbo_stream.update "msc" do %>
+  <%= render partial: 'items/monthly_saving_capaticy', locals: { item:  @item.monthly_item.msc_by_month.to_f }%>
+<% end %>

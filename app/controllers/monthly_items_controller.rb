@@ -24,6 +24,14 @@ class MonthlyItemsController < ApplicationController
 
   def show; end
 
+  # def update
+  #   @item = Item.find(params[:item_id])
+
+  #   respond_to do |format|
+  #     format.turbo_stream
+  #   end
+  # end
+
   def destroy
     @monthly_item.destroy!
 
