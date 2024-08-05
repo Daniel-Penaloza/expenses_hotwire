@@ -31,6 +31,7 @@
   </div>
 </div>
 
-<div class="row" id="msc">
-  <%= render "items/monthly_saving_capaticy", item: @monthly_item.msc_by_month %>
-</div>
+<%= turbo_stream_from "msc" %>
+<%= turbo_frame_tag "msc" do %>
+  <%= render 'items/monthly_saving_capaticy', item: @monthly_item.msc_by_month.to_f %>
+<% end %>

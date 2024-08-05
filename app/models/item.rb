@@ -28,4 +28,6 @@ class Item < ApplicationRecord
   def outcome?
     item_type == 'outcome'
   end
+
+  after_update_commit -> { broadcast_replace_to "msc", partial: 'items/monthly_saving_capaticy', locals: { item: self.monthly_item.msc_by_month.to_f }, target: 'msc' }
 end
