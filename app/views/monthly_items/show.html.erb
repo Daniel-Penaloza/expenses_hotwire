@@ -16,20 +16,54 @@
 
 <%= pie_chart @monthly_item.chart_by_month, donut: true  %>
 
+<!--TODO: REFACTOR -->
 <div class="row mt-4" data-controller="items">
   <div class="col" style="border-right: 1px solid #333;">
     <h4 class="mb-5 text-center">Incomes</h4>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-5 p-0">
+          <span>Item</span>
+        </div>
+        <div class="col">
+          <span>Amount</span>
+        </div>
+        <div class="col">
+          <span>Apply</span>
+        </div>
+        <div class="col">
+          <span>Actions</span>
+        </div>
+      </div>
+    </div>
     <%= turbo_frame_tag "incomes" do %>
       <%= render @monthly_item.items.income.desc_order %>
     <% end %>
   </div>
   <div class="col">
     <h4 class="mb-5 text-center">Outcomes</h4>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-5 p-0">
+          <span>Item</span>
+        </div>
+        <div class="col">
+          <span>Amount</span>
+        </div>
+        <div class="col">
+          <span>Apply</span>
+        </div>
+        <div class="col">
+          <span>Actions</span>
+        </div>
+      </div>
+    </div>
     <%= turbo_frame_tag "outcomes" do %>
       <%= render @monthly_item.items.outcome.desc_order %>
     <% end %>
   </div>
 </div>
+<!--TODO: REFACTOR -->
 
 <%= turbo_stream_from "msc" %>
 <%= turbo_frame_tag "msc" do %>
