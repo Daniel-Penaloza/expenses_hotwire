@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(Item.new) do %>
-  <div class="h3">Create Item</div>
+  <span class="fs-3 fw-lighter">Create Item</span>
 
   <%= render "form", monthly_item: @monthly_item, item: @item %>
 <% end %>

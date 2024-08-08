@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_quote, only: %i[show destroy]
+  before_action :set_item, only: %i[show destroy]
   before_action :set_monthly_item, only: %i[new create destroy update]
 
   def index
@@ -53,7 +53,8 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :amount, :item_type, :applied, monthly_items_attributes: [:monthly_item_id])
   end
 
-  def set_quote
+  def set_item
+    debugger
     @item = Item.find(params[:id])
   end
 
