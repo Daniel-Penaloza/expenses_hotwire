@@ -1,0 +1,18 @@
+<%= turbo_frame_tag @item do %>
+  <div class="row">
+    <%= form_with model: [@monthly_item, @item], class: 'row g-3 mt-2' do |form| %>
+    <div class="col-5">
+      <%= form.label :name, class: "visually-hidden" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="col-5">
+      <%= form.label :amount, class: "visually-hidden" %>
+      <%= form.number_field :amount, class: "form-control", placeholder: "Amount" %>
+    </div>
+
+    <div class="col">
+      <%= form.submit "Update", class: "btn btn-outline-primary btn-sm fw-light mt-1 float-end" %>
+    </div>
+  <% end %>
+  </div>
+<% end %>

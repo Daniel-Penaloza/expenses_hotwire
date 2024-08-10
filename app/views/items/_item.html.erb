@@ -17,11 +17,11 @@
         </div>
         <div class="col">
           <span>
-            <%= link_to "", monthly_item_item_path(item.monthly_item, item),
-                            class: "bi bi-pen-fill text-danger" %>
+            <%= link_to "", edit_monthly_item_item_path(item.monthly_item, item),
+                            class: "bi bi-pencil-square btn btn-success" %>
             <%= link_to "", monthly_item_item_path(item.monthly_item, item),
                                   data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
-                                  class: "bi bi-eraser-fill text-danger" %>
+                                  class: "bi bi-trash-fill btn btn-danger" %>
           </span>
         </div>
       </div>

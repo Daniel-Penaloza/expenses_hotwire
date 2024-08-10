@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[show destroy]
-  before_action :set_monthly_item, only: %i[new create destroy update]
+  before_action :set_item, only: %i[show destroy edit]
+  before_action :set_monthly_item, only: %i[new create destroy update edit]
 
   def index
     @items = Item.desc_order
@@ -25,11 +25,14 @@ class ItemsController < ApplicationController
 
   def show; end
 
+  def edit; end
+
   def update
     @item = @monthly_item.items.find(params[:id])
 
     if @item.update(item_params)
       respond_to do |format|
+        format.html { redirect_to monthly_item_path(@monthly_item), notice: 'Item was successfully updated'}
         format.turbo_stream
       end
     else
@@ -54,7 +57,6 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    debugger
     @item = Item.find(params[:id])
   end
 
