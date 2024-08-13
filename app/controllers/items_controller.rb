@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to monthly_item_path(@monthly_item), notice: 'Item was successfully updated'}
         format.turbo_stream
+        break
       end
     else
       render :edit, status: :unprocessable_entity

@@ -1,4 +1,4 @@
-<%= form_with model: [monthly_item, Item], class: 'row g-3 mt-2' do |form| %>
+<%= form_with model: [monthly_item, Item.new], class: 'row g-3 mt-2' do |form| %>
   <div class="col-auto">
     <%= form.label :name, class: "visually-hidden" %>
     <%= form.text_field :name, class: "form-control", placeholder: "Item Name" %>

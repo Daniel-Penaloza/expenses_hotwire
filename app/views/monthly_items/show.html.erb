@@ -1,4 +1,6 @@
 <%= turbo_stream_from "msc" %>
+<%= turbo_stream_from "month_incomes" %>
+<%= turbo_stream_from "month_outcomes" %>
 
 <div class="row">
   <div class="col">
@@ -21,6 +23,16 @@
       <%= turbo_frame_tag "msc" do %>
         <%= render 'items/monthly_saving_capaticy', item: @monthly_item.msc_by_month.to_f %>
       <% end %>
+
+      <div class="mt-3">
+        <%= turbo_frame_tag "month_incomes" do %>
+          <h3 class="fw-lighter">Total Incomes: <%= @monthly_item.month_incomes.to_f %></h3>
+        <% end %>
+
+        <%= turbo_frame_tag "month_outcomes" do %>
+        <h3 class="fw-lighter">Total Outcomes: <%= @monthly_item.month_outcomes.to_f %></h3>
+      <% end %>
+      </div>
     </div>
   </div>
   <div class="col-6">

@@ -30,15 +30,7 @@ class MonthlyItem < ApplicationRecord
   end
 
   def chart_by_month
-    { incomes: incomes_chart, outcomes: outcomes_chart } if items.any?
-  end
-
-  def incomes_chart
-   (MonthlyItem.accumulated / month_incomes) * 100
-  end
-
-  def outcomes_chart
-    res = (month_outcomes / month_incomes.to_f) * 100
+    { incomes: month_incomes, outcomes: month_outcomes } if items.any?
   end
 
   def self.accumulated
