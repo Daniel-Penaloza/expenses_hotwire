@@ -3,3 +3,7 @@
 <%= turbo_stream.update "msc" do %>
   <%= render 'items/monthly_saving_capaticy', item: @monthly_item.msc_by_month.to_f %>
 <% end %>
+
+<%= turbo_stream.update "items_chart" do %>
+  <%= render 'monthly_items/items_chart', monthly_item: @monthly_item %>
+<% end %>

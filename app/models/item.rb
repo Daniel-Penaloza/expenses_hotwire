@@ -30,9 +30,12 @@ class Item < ApplicationRecord
   end
 
   after_update_commit -> { broadcast_replace_to "msc", partial: 'items/monthly_saving_capaticy', locals: { item: self.monthly_item.msc_by_month.to_f }, target: 'msc' }
-
   after_update_commit -> { broadcast_replace_to "month_incomes", partial: 'monthly_items/month_incomes', locals: { monthly_item: self.monthly_item }, target: 'month_incomes' }
   after_update_commit -> { broadcast_replace_to "month_incomes", partial: 'monthly_items/month_outcomes', locals: { monthly_item: self.monthly_item }, target: 'month_outcomes' }
   after_destroy_commit -> { broadcast_replace_to "month_incomes", partial: 'monthly_items/month_incomes', locals: { monthly_item: self.monthly_item }, target: 'month_incomes' }
   after_destroy_commit -> { broadcast_replace_to "month_incomes", partial: 'monthly_items/month_outcomes', locals: { monthly_item: self.monthly_item }, target: 'month_outcomes' }
+
+  after_update_commit -> { broadcast_replace_to "items_chart", partial: 'monthly_items/items_chart', locals: { monthly_item: self.monthly_item }, target: 'items_chart' }
+  after_destroy_commit -> { broadcast_replace_to "items_chart", partial: 'monthly_items/items_chart', locals: { monthly_item: self.monthly_item }, target: 'items_chart' }
+
 end

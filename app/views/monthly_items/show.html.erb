@@ -1,6 +1,7 @@
 <%= turbo_stream_from "msc" %>
 <%= turbo_stream_from "month_incomes" %>
 <%= turbo_stream_from "month_outcomes" %>
+<%= turbo_stream_from "items_chart" %>
 
 <div class="row">
   <div class="col">
@@ -37,7 +38,10 @@
   </div>
   <div class="col-6">
     <%= turbo_frame_tag Item.new %>
-    <%#= pie_chart @monthly_item.chart_by_month, donut: true , library: { backgroundColor: "#f5f5f5" } %>
+
+    <%= turbo_frame_tag "items_chart" do %>
+      <%= render 'monthly_items/items_chart', monthly_item: @monthly_item %>
+    <% end %>
   </div>
 </div>
 
