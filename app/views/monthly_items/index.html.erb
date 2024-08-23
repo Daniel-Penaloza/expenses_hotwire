@@ -1,14 +1,58 @@
-<%= turbo_frame_tag dom_id(MonthlyItem.new) do %>
-  <%= link_to "Create new Month",
-              new_monthly_item_path,
-              class: 'btn btn-primary',
-              data: { "turbo_frame": dom_id(MonthlyItem.new) } %>
-<% end %>
+<div class="row mb-4">
+  <div class="col">
+    <span>
+      <i class="bi bi-wallet2 h2 d-inline"></i>
+      <span><h3 class="display-6 fw-lighter d-inline">My Budget</h3></span>
+    </span>
+  </div>
+  <div class="col">
+    <%= turbo_frame_tag dom_id(MonthlyItem.new) do %>
+    <%= link_to "Create new Month",
+                new_monthly_item_path,
+                class: 'btn btn-primary float-end',
+                data: { "turbo_frame": dom_id(MonthlyItem.new) } %>
+  <% end %>
+  </div>
+</div>
 
-<%= turbo_frame_tag "month_items" do %>
-  <%= render @monthly_items %>
-<% end %>
+<div class="row rounded bg-light p-4">
+  <div class="col-8">
+    <div class="row">
+      <div class="col text-center">
+        <span style="display: block;" class="fs-4"><%= number_to_currency(Item.total_incomes_applied) %></span>
+        <span class="fs-4 text-primary fw-lighter">Incomes</span>
+      </div>
+      <div class="col text-center">
+        <span style="display: block;" class="fs-4"><%= number_to_currency(Item.total_outcomes_applied) %></span>
+        <span class="fs-4 text-danger fw-lighter">Outcomes</span>
+      </div>
+      <div class="col text-center">
+        <div class="row" id="accumulated">
+          <%= render 'monthly_items/accumulated', accumulated: MonthlyItem.accumulated %>
+        </div>
+        <span class="fs-4 text-success  fw-lighter">Profit</span>
+      </div>
+    </div>
 
-<div class="row" id="accumulated">
-  <%= render 'monthly_items/accumulated', accumulated: MonthlyItem.accumulated %>
+    <div class="row">
+      <%= column_chart MonthlyItem.chart_info %>
+    </div>
+  </div>
+  <div class="col">
+    <div class="row text-center mb-4">
+      <span><h3 class="display-6 fw-lighter d-inline">Current Month Budget</h3></span>
+    </div>
+    <div class="row">
+      <%= pie_chart MonthlyItem.budget_chart, legend: "bottom"  %>
+    </div>
+
+  </div>
+</div>
+
+<div class="row rounded bg-light p-4 mt-4">
+  <%= turbo_frame_tag "month_items" do %>
+  <div class="text-center col-3 p-2 rounded bg-white">
+    <%= render @monthly_items %>
+  </div>
+  <% end %>
 </div>
